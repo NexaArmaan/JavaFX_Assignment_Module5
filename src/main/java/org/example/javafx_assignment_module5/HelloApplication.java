@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -72,4 +74,22 @@ public class HelloApplication extends Application {
         return menuBar;
     }
 
+    private VBox createLeftSide(){
+        VBox leftSide = new VBox();
+        Image image = new Image("C:\\Users\\Armaan Arora\\Desktop\\JavaFX_Assignment_Module5\\src\\main\\resources\\org\\example\\profile-icon-login-head-icon-vector.jpg");
+
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+        imageView.getStyleClass().add("Login Image");
+
+        leftSide.getChildren().add(imageView);
+        return leftSide;
+    }
+
+    private VBox createRightSide(){
+
+
+    }
 }
