@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
 
@@ -47,7 +48,7 @@ public class HelloApplication extends Application {
         root.setCenter(centerPanel);
         root.setBottom(bottomBar);
 
-        Scene scene = new Scene(fxmlLoader.load(), 900, 850);
+        Scene scene = new Scene(root, 725, 600);
         stage.setTitle("JavaFX_Assignment");
         stage.setScene(scene);
         stage.show();
@@ -88,7 +89,7 @@ public class HelloApplication extends Application {
 
     private VBox createLeftSide(){
         VBox leftSide = new VBox();
-        Image image = new Image("C:\\Users\\Armaan Arora\\Desktop\\JavaFX_Assignment_Module5\\src\\main\\resources\\org\\example\\profile-icon-login-head-icon-vector.jpg");
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/example/profile-icon-login-head-icon-vector.jpg")));
 
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(100);
