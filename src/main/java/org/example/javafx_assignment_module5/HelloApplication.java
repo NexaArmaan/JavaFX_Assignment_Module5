@@ -1,6 +1,8 @@
 package org.example.javafx_assignment_module5;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -45,7 +47,7 @@ public class HelloApplication extends Application {
         root.setCenter(centerPanel);
         root.setBottom(bottomBar);
 
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 850);
         stage.setTitle("JavaFX_Assignment");
         stage.setScene(scene);
         stage.show();
@@ -221,7 +223,7 @@ public class HelloApplication extends Application {
             infoDisplay("No Selection","Select the student to be edited");
         }
 
-        selected.setID(idNum.getText());
+        selected.setId(idNum.getText());
         selected.setFirstName(firstName.getText());
         selected.setLastName(lastName.getText());
         selected.setDepartment(department.getText());
