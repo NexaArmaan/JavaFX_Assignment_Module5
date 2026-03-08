@@ -49,6 +49,8 @@ public class HelloApplication extends Application {
         root.setBottom(bottomBar);
 
         Scene scene = new Scene(root, 725, 600);
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         stage.setTitle("JavaFX_Assignment");
         stage.setScene(scene);
         stage.show();
@@ -83,6 +85,7 @@ public class HelloApplication extends Application {
         defaultMenu.setOnAction(e-> infoDisplay("Theme","Default theme is applied"));
         aboutMenu.setOnAction(e-> infoDisplay("About","JavaFX is good"));
 
+        menuBar.getStyleClass().add("menu-bar");
         menuBar.getMenus().addAll(fileMenu,editMenu,themeMenu,helpMenu);
         return menuBar;
     }
@@ -97,6 +100,7 @@ public class HelloApplication extends Application {
         imageView.setPreserveRatio(true);
         imageView.getStyleClass().add("login-image");
 
+        leftSide.getStyleClass().add("left-side");
         leftSide.getChildren().add(imageView);
         return leftSide;
     }
@@ -122,6 +126,13 @@ public class HelloApplication extends Application {
 
         email = new TextField();
         email.setPromptText("Email");
+        idNum.getStyleClass().add("custom-text-field");
+        firstName.getStyleClass().add("custom-text-field");
+        lastName.getStyleClass().add("custom-text-field");
+        department.getStyleClass().add("custom-text-field");
+        major.getStyleClass().add("custom-text-field");
+        email.getStyleClass().add("custom-text-field");
+
 
         Button clearButton = new Button("Clear");
         Button addButton = new Button("Add");
@@ -167,7 +178,7 @@ public class HelloApplication extends Application {
 
         tableView.getColumns().addAll(idCol,firstNameCol,lastNameCol,departmentCol,majorCol,emailCol);
         tableView.setItems(studentList);
-        tableView.getStyleClass().add("student-table");
+        tableView.getStyleClass().add("table-view");
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
