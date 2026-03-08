@@ -35,7 +35,7 @@ public class HelloApplication extends Application {
 
         MenuBar menuBar = createMenuBar();
         VBox leftSide = createLeftSide();
-        VBox rightSide = createRightSide;
+        VBox rightSide = createRightSide();
         StackPane centerPanel = createCenterPanel();
         Pane bottomBar = createBottomBar();
 
@@ -76,7 +76,7 @@ public class HelloApplication extends Application {
         newItem.setOnAction(e -> clearFields());
         clearMenu.setOnAction(e -> clearFields());
         exitMenu.setOnAction(e -> ((Stage) menuBar.getScene().getWindow()).close());
-        deleteItem.setOnAction(e-> deleteSelectedFields());
+        deleteItem.setOnAction(e-> deleteSelectedStudent());
         defaultMenu.setOnAction(e-> infoDisplay("Theme","Default theme is applied"));
         aboutMenu.setOnAction(e-> infoDisplay("About","JavaFX is good"));
 
@@ -125,7 +125,7 @@ public class HelloApplication extends Application {
         Button deleteButton = new Button("Delete");
         Button editButton = new Button("Edit");
 
-        clearButton.setOnAction(e->clearField());
+        clearButton.setOnAction(e->clearFields());
         addButton.setOnAction(e->addStudent());
         deleteButton.setOnAction(e->deleteSelectedStudent());
         editButton.setOnAction(e->editSelectedStudent());
@@ -175,4 +175,81 @@ public class HelloApplication extends Application {
         return centerPanel;
     }
 
+    private Pane createBottomBar(){
+        Pane bottomBar = new Pane();
+        bottomBar.getStyleClass().add("bottom-bar");
+        return bottomBar;
+    }
+
+    private void clearFields(){
+        idNum.clear();
+        firstName.clear();
+        lastName.clear();
+        department.clear();
+        major.clear();
+        email.clear();
+        tableView.getSelectionModel().clearSelection();
+    }
+
+    private void deleteSelectedStudent(){
+        Student select = tableView.getSelectionModel().getSelectedItem();
+
+        if (select == null){
+            infoDisplay("No selection","Select a field to be deleted");
+            return;
+        }
+
+        studentList.remove(select);
+        clearFields();
+    }
+
+    private void addStudent(){
+        if (idNum.getText().trim().isEmpty() || firstName.getText().trim().isEmpty() || lastName.getText().trim().isEmpty() || department.getText().trim().isEmpty() || major.getText().trim().isEmpty() || email.getText().trim().isEmpty()){
+            infoDisplay("Missing Info","Fill all the information before adding");
+            return;
+        }
+
+        Student student = new Student(idNum.getText(),firstName.getText(),lastName.getText(),department.getText(),major.getText(),email.getText());
+        studentList.add(student);
+        clearFields();
+    }
+
+    private void editSelectedStudent(){
+        Student selected = tableView.getSelectionModel().getSelectedItem();
+
+        if (selected == null){
+            infoDisplay("No Selection","Select the student to be edited");
+        }
+
+        selected.setID(idNum.getText());
+        selected.setFirstName(firstName.getText());
+        selected.setLastName(lastName.getText());
+        selected.setDepartment(department.getText());
+        selected.setMajor(major.getText());
+        selected.setEmail(email.getText());
+
+        tableView.refresh();
+        clearFields();
+    }
+
+    private void infoDisplay(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void loadStudentIntoFields(Student student) {
+        idNum.setText(student.getId());
+        firstName.setText(student.getFirstName());
+        lastName.setText(student.getLastName());
+        department.setText(student.getDepartment());
+        major.setText(student.getMajor());
+        email.setText(student.getEmail());
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }
