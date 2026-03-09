@@ -48,7 +48,7 @@ public class HelloApplication extends Application {
         root.setCenter(centerPanel);
         root.setBottom(bottomBar);
 
-        Scene scene = new Scene(root, 725, 600);
+        Scene scene = new Scene(root, 780, 680);
         scene.getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         stage.setTitle("JavaFX_Assignment");

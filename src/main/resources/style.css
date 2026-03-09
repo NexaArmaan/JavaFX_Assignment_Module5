@@ -63,7 +63,7 @@
 
 .table-view .column-header .label {
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 10px;
     -fx-font-weight: normal;
     -fx-padding: 6 8 6 8;
 }
