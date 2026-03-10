@@ -112,7 +112,7 @@
     -fx-pref-height: 45;
     -fx-cursor: hand;
     -fx-padding: 20 10 10 10;
-    -fx-vgap: 50;
+    -fx-spacing: 15;
 }
 
 .action-button:hover {
